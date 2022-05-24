@@ -18,11 +18,17 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')
     ->group(function () {
         // Debit card endpoints
-        Route::get('debit-cards', [DebitCardController::class, 'index']);
-        Route::post('debit-cards', [DebitCardController::class, 'store']);
-        Route::get('debit-cards/{debitCard}', [DebitCardController::class, 'show']);
-        Route::put('debit-cards/{debitCard}', [DebitCardController::class, 'update']);
-        Route::delete('debit-cards/{debitCard}', [DebitCardController::class, 'destroy']);
+        Route::get('debit-cards', [DebitCardController::class, 'index'])->name('debit-cards.index');
+        Route::post('debit-cards', [DebitCardController::class, 'store'])->name('debit-cards.store');
+
+        Route::get('debit-cards/{debitCard}', [DebitCardController::class, 'show'])
+            ->name('debit-cards.show');
+
+        Route::put('debit-cards/{debitCard}', [DebitCardController::class, 'update'])
+            ->name('debit-cards.update');
+
+        Route::delete('debit-cards/{debitCard}', [DebitCardController::class, 'destroy'])
+            ->name('debit-cards.destroy');
 
         // Debit card transactions endpoints
         Route::get('debit-card-transactions', [DebitCardTransactionController::class, 'index']);
